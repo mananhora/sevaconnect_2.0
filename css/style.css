@@ -1,4 +1,12 @@
+.causes{
+	display: none;
+}
+
+.locations{
+	display: none;
+}
 h1{
 	font-size:40px;
 	color:#26972D;
 }
+
