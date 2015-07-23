@@ -1,0 +1,27 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "sevaconnect backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "sevaconnect",
+    "nodejs",
+    "learning",
+    "first",
+    "project"
+  ],
+  "author": "Manan Hora",
+  "license": "ISC",
+  "dependencies": {
+    "connect": "~1.8",
+    "ejs": "^2.3.2",
+    "express": "^4.13.0",
+    "gcloud": "^0.16.0",
+    "mysql": "^2.5.4"
+  },
+  "devDependencies": {}
+}
