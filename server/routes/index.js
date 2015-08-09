@@ -44,6 +44,8 @@ router.post('/nonprofits', function(req, res) {
     });
 });
 
+
+//router to get list of all nonprofits
 router.get('/nonprofits', function(req, res) {
     var results = [];
 
@@ -57,7 +59,7 @@ router.get('/nonprofits', function(req, res) {
         query.on('row', function(row) {
 
             for(var i = 0; i<results.length;i=i+1){
-                console.log(results[i].ngoname);
+                //console.log(results[i].ngoname);
             }
             //console.log(results);
             results.push(row);
@@ -77,6 +79,7 @@ router.get('/nonprofits', function(req, res) {
     });
 
 });
+
 
 
 router.post('/nonprofitsbycause', function(req, res) {
@@ -118,6 +121,40 @@ router.post('/nonprofitsbycause', function(req, res) {
     });
 
 });
+
+router.post('/nonprofitsbylocation', function(req, res) {
+    var results = [];
+
+    var location = req.body.location;
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+
+        // SQL Query > Select Data
+        var query = client.query(" SELECT * FROM NonProfitsList where location='"+location+"';");
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            console.log(results);
+            results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            console.log("ending connection");
+            client.end();
+            return res.json(results);
+        });
+
+        // Handle Errors
+        if(err) {
+            console.log("error");
+          console.log(err);
+        }
+
+    });
+
+});
+
+
 
 router.put('/nonprofits/:todo_id', function(req, res) {
 
