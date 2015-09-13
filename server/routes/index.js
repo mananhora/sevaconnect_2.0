@@ -126,11 +126,13 @@ router.post('/nonprofitsbylocation', function(req, res) {
     var results = [];
 
     var location = req.body.location;
+    console.log("location  "+location);
+    var cause = req.body.cause;
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
 
         // SQL Query > Select Data
-        var query = client.query(" SELECT * FROM NonProfitsList where location='"+location+"';");
+        var query = client.query(" SELECT * FROM NonProfitsList where cause='"+cause+"'OR location='"+location+"';");
         // Stream results back one row at a time
         query.on('row', function(row) {
             console.log(results);
